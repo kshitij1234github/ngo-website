@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: green-of-social-society
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+    routes:
+      # Single-page app: let React Router handle /about, /donate, etc.
+      - type: rewrite
+        source: /*
+        destination: /index.html
