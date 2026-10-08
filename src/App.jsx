@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollManager from './components/ScrollManager';
 import ScrollExtras from './components/ScrollExtras';
+import WhatsAppButton from './components/WhatsAppButton';
 import useReveal from './hooks/useReveal';
 import { initSmoothScroll, destroySmoothScroll } from './utils/smoothScroll';
 import Home from './pages/Home';
@@ -36,6 +37,7 @@ export default function App() {
       <a href="#main" className="skip-link">Skip to content</a>
       <ScrollManager />
       <ScrollExtras />
+      <WhatsAppButton />
       <Navbar />
       <main id="main" tabIndex={-1}>
         <div key={pathname} className="page-transition">
