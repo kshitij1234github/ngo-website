@@ -640,7 +640,11 @@ code {
   .programme-list > li:first-child { grid-column: auto; }
 }
 @media (max-width: 420px) {
-  .training-grid, .state-grid { grid-template-columns: 1fr; }
+  .training-grid { grid-template-columns: 1fr; }
+  .state-grid { gap: 8px; }
+  .state-grid > li { gap: 6px; padding: 10px; }
+  .state-grid strong { font-size: 0.84rem; }
+  .state-grid span[lang='hi'] { font-size: 0.78rem; }
   .training-card--wide { grid-column: auto; }
   .bank-card__list > div { flex-direction: column; align-items: flex-start; gap: 2px; }
   .bank-card__list dd { text-align: left; }
@@ -676,8 +680,9 @@ code {
 .founder__contact a:hover { border-color: var(--green); background: var(--green-light); }
 .team { margin-top: clamp(56px, 8vw, 96px); }
 .team__title { text-align: center; margin-bottom: 28px; color: var(--green-dark); }
-.team__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
-.team__grid > li { flex: 0 1 260px; min-width: 220px; }
+.team__grid { --cols: 4; --gap: 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); }
+.team__grid > li { flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); min-width: 0; }
+.team__grid > li > .team-card { height: 100%; }
 .team-card { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow-sm); transition: box-shadow 0.3s, transform 0.3s var(--ease); }
 .team-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
 .team-card img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; }
@@ -688,6 +693,16 @@ code {
   .founder { grid-template-columns: 1fr; }
   .founder__photo { width: calc(100% - 16px); max-width: 300px; margin-inline: auto; }
   .founder__photo::before { inset: 12px -12px -12px 12px; }
+}
+@media (max-width: 1024px) {
+  .team__grid { --cols: 3; --gap: 20px; }
+}
+@media (max-width: 760px) {
+  .team__grid { --cols: 2; --gap: 12px; }
+  .team-card { border-radius: var(--radius); }
+  .team-card__body { padding: 10px 8px 12px; }
+  .team-card__body strong { font-size: 0.95rem; line-height: 1.3; }
+  .team-card__body span { font-size: 0.74rem; line-height: 1.35; }
 }
 
 /* ---------- Notice ---------- */
