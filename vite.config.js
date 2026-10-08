@@ -3,4 +3,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  // GitHub Pages serves the site from /<repo-name>/; Render and local dev use '/'.
+  base: process.env.BASE_PATH || '/',
 });
