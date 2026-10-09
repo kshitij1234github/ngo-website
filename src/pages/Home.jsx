@@ -10,6 +10,7 @@ import FeaturedInitiative from '../components/FeaturedInitiative';
 import ProcessTimeline from '../components/ProcessTimeline';
 import CTASection from '../components/CTASection';
 import Button from '../components/Button';
+import FounderSection from '../components/FounderSection';
 import PhotoGrid from '../components/PhotoGrid';
 import { galleryPhotos } from '../data/galleryPhotos';
 import programs from '../data/programs';
@@ -62,6 +63,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FounderSection
+        tint={false}
+        members={['shafeekAhemad', 'mohdTariq', 'avnishPatel']}
+        showAllLink
+      />
 
       <FocusTicker />
 
