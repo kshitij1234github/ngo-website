@@ -31,6 +31,8 @@ export const contact = {
   phoneDisplay: '+91 84481 34718',
   phoneHref: 'tel:+918448134718',
   email2: 'jabiralivaris786@gmail.com',
+  // Contact, Volunteer and Donate form submissions are emailed here.
+  formsEmail: 'jabiralivaris786@gmail.com',
   phone2: '7982050673',
   phone2Display: '+91 79820 50673',
   phone2Href: 'tel:+917982050673',

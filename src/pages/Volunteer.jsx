@@ -3,6 +3,8 @@ import { CheckCircle2, Send, GraduationCap, Megaphone, Laptop, HeartPulse } from
 import PageHeader from '../components/PageHeader';
 import SectionTitle from '../components/SectionTitle';
 import images from '../data/images';
+import { contact } from '../data/ngoData';
+import { sendForm } from '../utils/sendForm';
 
 const roles = [
   { icon: GraduationCap, title: 'Teaching & Mentoring', text: 'Support children with learning, reading and life skills.' },
@@ -18,12 +20,14 @@ export default function Volunteer() {
   const [form, setForm] = useState(initial);
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   const toggleInterest = (i) =>
     setForm((f) => ({ ...f, interests: f.interests.includes(i) ? f.interests.filter((x) => x !== i) : [...f.interests, i] }));
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const err = {};
     if (!form.name.trim()) err.name = 'Please enter your full name.';
@@ -31,8 +35,24 @@ export default function Volunteer() {
     if (form.phone.replace(/\D/g, '').length < 10) err.phone = 'Please enter a valid phone number.';
     setErrors(err);
     if (Object.keys(err).length) return;
-    // Static site: connect to a form service (e.g. Formspree, Google Forms) here later.
-    setSent(true);
+    setSending(true);
+    setSendError('');
+    try {
+      await sendForm(`New volunteer: ${form.name}`, {
+        Name: form.name,
+        Email: form.email,
+        Phone: form.phone,
+        City: form.city || '—',
+        Availability: form.availability,
+        Interests: form.interests.join(', ') || '—',
+        Message: form.message || '—',
+      });
+      setSent(true);
+    } catch {
+      setSendError(`Sorry, your application could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone2}.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -136,8 +156,9 @@ export default function Volunteer() {
                   <label htmlFor="v-msg">Tell us about yourself (optional)</label>
                   <textarea id="v-msg" name="message" rows="4" value={form.message} onChange={update} />
                 </div>
-                <button type="submit" className="btn btn--primary btn--lg field--full">
-                  <span>Submit Registration</span> <Send size={18} aria-hidden="true" />
+                {sendError && <p className="field-error field--full" role="alert">{sendError}</p>}
+                <button type="submit" className="btn btn--primary btn--lg field--full" disabled={sending}>
+                  <span>{sending ? 'Sending…' : 'Submit Registration'}</span> <Send size={18} aria-hidden="true" />
                 </button>
               </form>
             )}

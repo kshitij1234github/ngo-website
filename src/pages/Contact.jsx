@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { MapPin, Mail, Phone, Globe, Send, CheckCircle2, Clock, MessageCircle } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
 import images from '../data/images';
+import { sendForm } from '../utils/sendForm';
 import { ngo, contact, getRegistration } from '../data/ngoData';
 
 export default function Contact() {
@@ -11,10 +12,12 @@ export default function Contact() {
   const [form, setForm] = useState(initial);
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const err = {};
     if (!form.name.trim()) err.name = 'Please enter your full name.';
@@ -24,8 +27,22 @@ export default function Contact() {
     if (form.message.trim().length < 10) err.message = 'Please write a short message (at least 10 characters).';
     setErrors(err);
     if (Object.keys(err).length) return;
-    // Static site: connect to a form service (e.g. Formspree, EmailJS) here later.
-    setSent(true);
+    setSending(true);
+    setSendError('');
+    try {
+      await sendForm(`Website enquiry: ${form.subject}`, {
+        Name: form.name,
+        Email: form.email,
+        Phone: form.phone || '—',
+        Subject: form.subject,
+        Message: form.message,
+      });
+      setSent(true);
+    } catch {
+      setSendError(`Sorry, your message could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone2}.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   const details = [
@@ -144,8 +161,9 @@ export default function Contact() {
                   <textarea id="c-message" name="message" rows="6" value={form.message} onChange={update} aria-invalid={!!errors.message} />
                   {errors.message && <p className="field-error">{errors.message}</p>}
                 </div>
-                <button type="submit" className="btn btn--primary btn--lg field--full">
-                  <span>Send Message</span> <Send size={18} aria-hidden="true" />
+                {sendError && <p className="field-error field--full" role="alert">{sendError}</p>}
+                <button type="submit" className="btn btn--primary btn--lg field--full" disabled={sending}>
+                  <span>{sending ? 'Sending…' : 'Send Message'}</span> <Send size={18} aria-hidden="true" />
                 </button>
               </form>
             )}

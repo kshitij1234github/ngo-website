@@ -5,6 +5,7 @@ import BankDetails from '../components/BankDetails';
 import images from '../data/images';
 import { contact, getRegistration, ngo } from '../data/ngoData';
 import { startDonation } from '../utils/payment';
+import { sendForm } from '../utils/sendForm';
 
 const presetAmounts = [500, 1000, 2500, 5000];
 const formatINR = (n) => `₹${Number(n).toLocaleString('en-IN')}`;
@@ -23,6 +24,7 @@ export default function Donate() {
   const [errors, setErrors] = useState({});
   const [result, setResult] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   const cardRef = useRef(null);
   const amount = selected === 'custom' ? Number(custom) || 0 : selected;
@@ -46,6 +48,20 @@ export default function Donate() {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
+    setSendError('');
+    try {
+      await sendForm(`Donation pledge: ${formatINR(amount)}${frequency === 'monthly' ? ' / month' : ''} from ${form.name}`, {
+        Name: form.name,
+        Email: form.email,
+        Mobile: form.phone,
+        Amount: formatINR(amount),
+        Frequency: frequency === 'monthly' ? 'Monthly' : 'One-time',
+      });
+    } catch {
+      setSubmitting(false);
+      setSendError(`Sorry, your details could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone2}.`);
+      return;
+    }
     const res = await startDonation({ amount, frequency, ...form });
     setSubmitting(false);
     setResult(res);
@@ -199,6 +215,7 @@ export default function Donate() {
                   </div>
                 </div>
 
+                {sendError && <p className="field-error" role="alert">{sendError}</p>}
                 <button type="submit" className="btn btn--primary btn--block btn--lg" disabled={submitting}>
                   <Heart size={18} aria-hidden="true" />
                   <span>
