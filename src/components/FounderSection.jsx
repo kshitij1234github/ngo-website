@@ -1,11 +1,9 @@
-import { Mail, Phone, MessageCircle, ArrowRight } from 'lucide-react';
-import Button from './Button';
+import { Mail, Phone, MessageCircle } from 'lucide-react';
+import OfficeBearers from './OfficeBearers';
 import images from '../data/images';
-import { ngo, founder, team } from '../data/ngoData';
+import { ngo, founder } from '../data/ngoData';
 
-// `members` limits the office bearers shown (by image key); omit it to show everyone.
-export default function FounderSection({ tint = true, members, showAllLink = false }) {
-  const shown = members ? team.filter((m) => members.includes(m.image)) : team;
+export default function FounderSection({ tint = true, showTeam = true }) {
   return (
     <section className={`section${tint ? ' section--tint' : ''}`} aria-labelledby="founder-title">
       <div className="container founder">
@@ -28,27 +26,7 @@ export default function FounderSection({ tint = true, members, showAllLink = fal
         </div>
       </div>
 
-      {shown.length > 0 && (
-        <div className="container team">
-          <h3 className="team__title">Our Office Bearers</h3>
-          <ul className="team__grid">
-            {shown.map((member) => (
-              <li key={member.name} className="team-card">
-                <img src={images[member.image]} alt={`${member.name}, ${member.role}`} loading="lazy" />
-                <div className="team-card__body">
-                  <strong>{member.name}</strong>
-                  <span>{member.role}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-          {showAllLink && (
-            <div className="center-actions">
-              <Button to="/about" variant="outline" icon={ArrowRight}>Meet All Office Bearers</Button>
-            </div>
-          )}
-        </div>
-      )}
+      {showTeam && <OfficeBearers />}
     </section>
   );
 }
