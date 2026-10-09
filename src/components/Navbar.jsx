@@ -108,7 +108,6 @@ export default function Navbar() {
         </Link>
         <div className="mobile-menu__contact">
           <a href={contact.phoneHref}><Phone size={16} aria-hidden="true" /> {contact.phoneDisplay}</a>
-          <a href={contact.phone2Href}><Phone size={16} aria-hidden="true" /> {contact.phone2Display}</a>
           <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer"><MessageCircle size={16} aria-hidden="true" /> WhatsApp {contact.whatsappDisplay}</a>
           <a href={`mailto:${contact.email}`}><Mail size={16} aria-hidden="true" /> {contact.email}</a>
           <a href={`mailto:${contact.email2}`}><Mail size={16} aria-hidden="true" /> {contact.email2}</a>

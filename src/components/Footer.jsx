@@ -54,7 +54,6 @@ export default function Footer() {
               <Phone size={18} aria-hidden="true" />
               <span className="footer-contact__group">
                 <a href={contact.phoneHref}>{contact.phone}</a>
-                <a href={contact.phone2Href}>{contact.phone2}</a>
               </span>
             </li>
             <li>

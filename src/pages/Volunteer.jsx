@@ -49,7 +49,7 @@ export default function Volunteer() {
       });
       setSent(true);
     } catch {
-      setSendError(`Sorry, your application could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone2}.`);
+      setSendError(`Sorry, your application could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone}.`);
     } finally {
       setSending(false);
     }

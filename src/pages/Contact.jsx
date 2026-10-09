@@ -39,7 +39,7 @@ export default function Contact() {
       });
       setSent(true);
     } catch {
-      setSendError(`Sorry, your message could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone2}.`);
+      setSendError(`Sorry, your message could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone}.`);
     } finally {
       setSending(false);
     }
@@ -86,7 +86,6 @@ export default function Contact() {
                 <div>
                   <small>Phone</small>
                   <a href={contact.phoneHref}>{contact.phone}</a>
-                  <a href={contact.phone2Href}>{contact.phone2}</a>
                 </div>
               </li>
               <li>

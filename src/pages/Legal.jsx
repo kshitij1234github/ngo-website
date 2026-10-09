@@ -18,7 +18,7 @@ const content = {
       ['Use of this website', 'This website provides information about the work of the organisation. By using it, you agree to use it lawfully and not to misuse its content.'],
       ['Donations', 'Donations are voluntary. Receipts and 80G certificates are issued as per applicable law. Please contact us for any donation-related queries or refund requests.'],
       ['Content', 'Some images and stories on this website are illustrative. Statistics marked as indicative are for illustration and will be updated with verified figures.'],
-      ['Contact', `For questions about these terms, write to ${contact.email} or call ${contact.phone} / ${contact.phone2}.`],
+      ['Contact', `For questions about these terms, write to ${contact.email} or call ${contact.phone}.`],
     ],
   },
 };

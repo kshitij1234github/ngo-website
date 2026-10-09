@@ -59,7 +59,7 @@ export default function Donate() {
       });
     } catch {
       setSubmitting(false);
-      setSendError(`Sorry, your details could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone2}.`);
+      setSendError(`Sorry, your details could not be sent. Please email us at ${contact.formsEmail} or call ${contact.phone}.`);
       return;
     }
     const res = await startDonation({ amount, frequency, ...form });
@@ -131,7 +131,7 @@ export default function Donate() {
                   <br />
                   {contact.email2}
                   <br />
-                  {contact.phone} · {contact.phone2} (WhatsApp)
+                  {contact.phone} (Call / WhatsApp)
                 </p>
                 <button type="button" className="link-button" onClick={() => setResult(null)}>Make another pledge</button>
               </div>
