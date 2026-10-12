@@ -11,7 +11,6 @@ import ProcessTimeline from '../components/ProcessTimeline';
 import CTASection from '../components/CTASection';
 import Button from '../components/Button';
 import FounderSection from '../components/FounderSection';
-import OfficeBearers from '../components/OfficeBearers';
 import PhotoGrid from '../components/PhotoGrid';
 import { galleryPhotos } from '../data/galleryPhotos';
 import programs from '../data/programs';
@@ -112,7 +111,6 @@ export default function Home() {
           </div>
           <PhotoGrid photos={galleryPhotos.slice(0, 8)} tiles />
         </div>
-        <OfficeBearers members={['shafeekAhemad', 'mohdTariq', 'avnishPatel']} showAllLink />
       </section>
 
       <CTASection />
