@@ -173,8 +173,6 @@ export const founder = {
 /* Office bearers shown under the founder on the About page.
    `image` is a key from src/data/images.js. */
 export const team = [
-  { name: 'Shafeek Ahemad', role: 'Vice Chairman', image: 'shafeekAhemad' },
-  { name: 'Mohd. Tariq (Chhotu)', role: 'S.M. Women Leader', image: 'mohdTariq' },
   { name: 'Alshifa Bano', role: 'National Senior Women Chairman', image: 'alshifaBano' },
   { name: 'Kahkasha', role: 'Senior Central Women Chairman', image: 'kahkasha' },
   { name: 'Ashra', role: 'State Senior Women Chairman', image: 'ashra' },
@@ -210,6 +208,8 @@ export const team = [
   { name: 'Himani', role: 'Mandal Senior Women Chairman', image: 'himani' },
   { name: 'Laxmi Gupta', role: 'District Senior Women Chairman', image: 'laxmiGupta' },
   { name: 'Avnish Patel (Sekhoo)', role: 'Member', image: 'avnishPatel' },
+  { name: 'Shafeek Ahemad', role: 'Vice Chairman', image: 'shafeekAhemad' },
+  { name: 'Mohd. Tariq (Chhotu)', role: 'S.M. Women Leader', image: 'mohdTariq' },
 ];
 
 export const about = {
