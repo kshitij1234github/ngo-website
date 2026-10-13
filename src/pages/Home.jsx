@@ -1,109 +1,61 @@
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MessageCircle, MapPin } from 'lucide-react';
 import Hero from '../components/Hero';
-import TrustBadges from '../components/TrustBadges';
-import FocusTicker from '../components/FocusTicker';
-import ImpactStats from '../components/ImpactStats';
 import SectionTitle from '../components/SectionTitle';
-import ProgramCard from '../components/ProgramCard';
-import StoryCard from '../components/StoryCard';
-import FeaturedInitiative from '../components/FeaturedInitiative';
-import ProcessTimeline from '../components/ProcessTimeline';
-import CTASection from '../components/CTASection';
-import Button from '../components/Button';
+import ComplianceTable from '../components/ComplianceTable';
+import { TrainingsSection, ProgrammesSection, WorkingAreaSection } from '../components/WorkSections';
 import FounderSection from '../components/FounderSection';
+import BankDetails from '../components/BankDetails';
+import ContactForm from '../components/ContactForm';
+import Button from '../components/Button';
 import PhotoGrid from '../components/PhotoGrid';
 import { galleryPhotos } from '../data/galleryPhotos';
-import programs from '../data/programs';
-import stories from '../data/stories';
 import images from '../data/images';
-import { about } from '../data/ngoData';
+import { ngo, contact } from '../data/ngoData';
 
+/* Section order follows the organisation's brief:
+   logo, name & registrations → work → working area → management →
+   gallery → contact → bank account → enquiry form. */
 export default function Home() {
+  const contactCards = [
+    { icon: Mail, en: 'Email', hi: 'ईमेल', lines: [contact.email, contact.email2].map((e) => ({ text: e, href: `mailto:${e}` })) },
+    { icon: Phone, en: 'Mobile', hi: 'मोबाइल', lines: [{ text: contact.phoneDisplay, href: contact.phoneHref }] },
+    {
+      icon: MessageCircle,
+      en: 'WhatsApp',
+      hi: 'व्हाट्सएप',
+      lines: [{ text: contact.whatsappDisplay, href: contact.whatsappHref, external: true }],
+    },
+    { icon: MapPin, en: 'Head Office', hi: 'प्रधान कार्यालय', lines: [{ text: contact.addressInline }] },
+  ];
+
   return (
     <>
       <Hero />
-      <TrustBadges />
 
-      <section className="section section--stats" aria-label="Our impact at a glance">
+      <section className="section" aria-labelledby="identity-title">
         <div className="container">
-          <ImpactStats variant="dark" />
+          <div className="identity">
+            <img src={images.logo} alt={`${ngo.name} logo`} width="120" height="120" className="identity__logo" />
+            <h2 id="identity-title" className="identity__name">{ngo.name}</h2>
+            <p className="identity__name-hi" lang="hi">ग्रीन ऑफ सोशल सोसाइटी</p>
+            <p className="identity__tagline">Registered Non-Profit Organisation · <span lang="hi">पंजीकृत सामाजिक संस्था</span></p>
+          </div>
+          <ComplianceTable />
         </div>
       </section>
 
-      <section className="section" aria-labelledby="who-we-are">
-        <div className="container split">
-          <div className="split__media">
-            <img src={images.aboutCommunity} alt="Community volunteers standing together outside a village hall" loading="lazy" />
-            <div className="split__accent" aria-hidden="true" />
-          </div>
-          <div className="split__content">
-            <span className="eyebrow">About Us</span>
-            <h2 id="who-we-are">Who We Are</h2>
-            <p className="lead">{about.intro}</p>
-            <p>Our work focuses on:</p>
-            <ul className="check-list check-list--columns">
-              {about.focusAreas.map((a) => (
-                <li key={a}><CheckCircle2 size={19} aria-hidden="true" /> {a}</li>
-              ))}
-            </ul>
-            <Button to="/about" variant="primary" icon={ArrowRight}>Learn More About Us</Button>
-          </div>
-        </div>
-      </section>
+      <TrainingsSection tint />
+      <ProgrammesSection tint={false} />
+      <WorkingAreaSection tint />
 
-      <section className="section section--tint" aria-labelledby="areas-title">
-        <div className="container">
-          <SectionTitle
-            eyebrow="What We Do"
-            title={<span id="areas-title">Our Areas of Work</span>}
-            text="We focus on practical, community-led action across six key areas that shape everyday life and long-term well-being."
-          />
-          <div className="card-grid card-grid--3">
-            {programs.map((p) => <ProgramCard key={p.slug} program={p} />)}
-          </div>
-        </div>
-      </section>
-
-      <FounderSection tint={false} showTeam={false} />
-
-      <FocusTicker />
-
-      <FeaturedInitiative />
-
-      <section className="section section--tint" aria-labelledby="how-title">
-        <div className="container">
-          <SectionTitle
-            eyebrow="Our Approach"
-            title={<span id="how-title">How We Work</span>}
-            text="A simple, accountable process that keeps communities at the centre of every decision."
-          />
-          <ProcessTimeline />
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="stories-title">
-        <div className="container">
-          <div className="section-head-row">
-            <SectionTitle
-              align="left"
-              eyebrow="Stories of Change"
-              title={<span id="stories-title">Stories From the Ground</span>}
-              text="A glimpse of the change that community-led action can create."
-            />
-            <Button to="/stories" variant="outline" icon={ArrowRight}>View All Stories</Button>
-          </div>
-          <div className="card-grid card-grid--3">
-            {stories.slice(0, 3).map((s) => <StoryCard key={s.slug} story={s} />)}
-          </div>
-        </div>
-      </section>
+      <FounderSection tint={false} showTeam={false} eyebrow="Management · प्रबंधन" />
 
       <section className="section section--tint" aria-labelledby="gallery-title">
         <div className="container">
           <div className="section-head-row">
             <SectionTitle
               align="left"
-              eyebrow="Gallery"
+              eyebrow="Gallery · गैलरी"
               title={<span id="gallery-title">Moments From Our Work</span>}
               text="Trainings, centre openings and community gatherings across our programmes."
             />
@@ -113,7 +65,44 @@ export default function Home() {
         </div>
       </section>
 
-      <CTASection />
+      <section className="section" aria-labelledby="sampark-title">
+        <div className="container">
+          <SectionTitle
+            eyebrow="Contact · सम्पर्क"
+            title={<span id="sampark-title">Get in Touch</span>}
+            text={<span lang="hi">ईमेल, मोबाइल या व्हाट्सएप पर हमसे सम्पर्क करें।</span>}
+          />
+          <ul className="sampark-grid">
+            {contactCards.map(({ icon: I, en, hi, lines }) => (
+              <li key={en} className="sampark-card">
+                <span className="sampark-card__icon"><I size={22} strokeWidth={1.75} aria-hidden="true" /></span>
+                <strong>{en} <span lang="hi">/ {hi}</span></strong>
+                {lines.map((l) =>
+                  l.href ? (
+                    <a key={l.text} href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{l.text}</a>
+                  ) : (
+                    <span key={l.text}>{l.text}</span>
+                  ),
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section--tint" aria-labelledby="account-title">
+        <div className="container">
+          <SectionTitle
+            eyebrow="Bank Account · खाता विवरण"
+            title={<span id="account-title">Account Details &amp; Enquiry Form</span>}
+            text={<span lang="hi">दान हेतु बैंक खाता विवरण, और हमें संदेश भेजने के लिए फ़ॉर्म।</span>}
+          />
+          <div className="contact-grid">
+            <BankDetails />
+            <ContactForm />
+          </div>
+        </div>
+      </section>
     </>
   );
 }

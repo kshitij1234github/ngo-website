@@ -3,7 +3,7 @@ import OfficeBearers from './OfficeBearers';
 import images from '../data/images';
 import { ngo, founder } from '../data/ngoData';
 
-export default function FounderSection({ tint = true, showTeam = true }) {
+export default function FounderSection({ tint = true, showTeam = true, eyebrow = 'Our Leadership' }) {
   return (
     <section className={`section${tint ? ' section--tint' : ''}`} aria-labelledby="founder-title">
       <div className="container founder">
@@ -11,7 +11,7 @@ export default function FounderSection({ tint = true, showTeam = true }) {
           <img src={images.founder} alt={`${founder.name}, ${founder.role} of ${ngo.name}`} width="640" height="798" loading="lazy" />
         </figure>
         <div className="founder__content">
-          <span className="eyebrow">Our Leadership</span>
+          <span className="eyebrow">{eyebrow}</span>
           <h2 id="founder-title">{founder.name}</h2>
           <p className="founder__role">{founder.role}, {ngo.name}</p>
           <p className="lead">
