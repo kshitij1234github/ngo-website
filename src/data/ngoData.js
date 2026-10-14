@@ -207,9 +207,9 @@ export const team = [
   { name: 'Samreen Naaj', role: 'West Bengal Senior Women Chairman', image: 'samreenNaaj' },
   { name: 'Himani', role: 'Mandal Senior Women Chairman', image: 'himani' },
   { name: 'Laxmi Gupta', role: 'District Senior Women Chairman', image: 'laxmiGupta' },
-  { name: 'Avnish Patel (Sekhoo)', role: 'Member', image: 'avnishPatel' },
-  { name: 'Shafeek Ahemad', role: 'Vice Chairman', image: 'shafeekAhemad' },
-  { name: 'Mohd. Tariq (Chhotu)', role: 'S.M. Women Leader', image: 'mohdTariq' },
+  { name: 'Shafeek Ahmad', role: 'Vice Chairman', image: 'shafeekAhemad' },
+  { name: 'Mohd. Tariq Chhotu (Chhota Tariq urf S.M.)', role: 'Women Leader', image: 'mohdTariq' },
+  { name: 'Avnish Patel (Sekhu)', role: 'Member', image: 'avnishPatel' },
 ];
 
 export const about = {
