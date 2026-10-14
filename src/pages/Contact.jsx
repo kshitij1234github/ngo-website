@@ -91,7 +91,7 @@ export default function Contact() {
 
       <section className="map-section" aria-label="Location map">
         <iframe
-          title={`Map showing ${contact.mapQuery}`}
+          title={`Map showing our head office: ${contact.addressInline}`}
           src={`https://www.google.com/maps?q=${encodeURIComponent(contact.mapQuery)}&output=embed`}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

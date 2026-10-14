@@ -36,7 +36,8 @@ export const contact = {
   whatsapp: '7982050673',
   whatsappDisplay: '+91 79820 50673',
   whatsappHref: 'https://wa.me/917982050673',
-  mapQuery: 'Lahrapur, Auraiya, Uttar Pradesh 206246',
+  // Google Maps place for the head office (Karchala, Patti Thakur Gaon, near Kanchausi, Auraiya).
+  mapQuery: 'Karchala laharapur auraiya, Karchala, Patti Thakur Gaon, Uttar Pradesh 206246',
   officeHours: '', // e.g. 'Monday – Saturday, 10:00 AM – 6:00 PM' — leave empty to hide
 };
 
