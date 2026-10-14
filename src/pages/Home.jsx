@@ -45,7 +45,7 @@ export default function Home() {
       <ProgrammesSection tint={false} />
       <WorkingAreaSection tint />
 
-      <FounderSection tint={false} showTeam={false} eyebrow="Management · प्रबंधन" />
+      <FounderSection tint={false} eyebrow="Management · प्रबंधन" />
 
       <section className="section section--tint" aria-labelledby="sampark-title">
         <div className="container">
