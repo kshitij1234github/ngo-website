@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, Phone, MessageCircle, MapPin } from 'lucide-react';
+import { Mail, Phone, MessageCircle, MapPin } from 'lucide-react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import ComplianceTable from '../components/ComplianceTable';
@@ -6,15 +6,12 @@ import { TrainingsSection, ProgrammesSection, WorkingAreaSection } from '../comp
 import FounderSection from '../components/FounderSection';
 import BankDetails from '../components/BankDetails';
 import ContactForm from '../components/ContactForm';
-import Button from '../components/Button';
-import PhotoGrid from '../components/PhotoGrid';
-import { galleryPhotos } from '../data/galleryPhotos';
 import images from '../data/images';
 import { ngo, contact } from '../data/ngoData';
 
 /* Section order follows the organisation's brief:
    logo, name & registrations → work → working area → management →
-   gallery → contact → bank account → enquiry form. */
+   contact → bank account → enquiry form. */
 export default function Home() {
   const contactCards = [
     { icon: Mail, en: 'Email', hi: 'ईमेल', lines: [contact.email, contact.email2].map((e) => ({ text: e, href: `mailto:${e}` })) },
@@ -50,22 +47,7 @@ export default function Home() {
 
       <FounderSection tint={false} showTeam={false} eyebrow="Management · प्रबंधन" />
 
-      <section className="section section--tint" aria-labelledby="gallery-title">
-        <div className="container">
-          <div className="section-head-row">
-            <SectionTitle
-              align="left"
-              eyebrow="Gallery · गैलरी"
-              title={<span id="gallery-title">Moments From Our Work</span>}
-              text="Trainings, centre openings and community gatherings across our programmes."
-            />
-            <Button to="/gallery" variant="outline" icon={ArrowRight}>View Full Gallery</Button>
-          </div>
-          <PhotoGrid photos={galleryPhotos.slice(0, 8)} tiles />
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="sampark-title">
+      <section className="section section--tint" aria-labelledby="sampark-title">
         <div className="container">
           <SectionTitle
             eyebrow="Contact · सम्पर्क"
@@ -90,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--tint" aria-labelledby="account-title">
+      <section className="section" aria-labelledby="account-title">
         <div className="container">
           <SectionTitle
             eyebrow="Bank Account · खाता विवरण"
